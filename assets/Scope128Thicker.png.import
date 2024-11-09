@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daqn1hioc8da2"
-path="res://.godot/imported/Scope.png-0b47ec5cee6760fe41e684172a64e876.ctex"
+uid="uid://bs5dwbq3d0lhb"
+path="res://.godot/imported/Scope128Thicker.png-b9508cbba996b5bccf1aa4a0bd2ce56a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Scope.png"
-dest_files=["res://.godot/imported/Scope.png-0b47ec5cee6760fe41e684172a64e876.ctex"]
+source_file="res://assets/Scope128Thicker.png"
+dest_files=["res://.godot/imported/Scope128Thicker.png-b9508cbba996b5bccf1aa4a0bd2ce56a.ctex"]
 
 [params]
 
