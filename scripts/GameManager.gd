@@ -15,4 +15,9 @@ func _on_enemy_spawn_timer_timeout():
 	enemy.position = Vector2(get_viewport().get_mouse_position())
 	add_child(enemy)
 	print("attempted to spawn enemy at position" + str(get_viewport().get_mouse_position()))
-	
+
+func _ready():
+	SignalBus.connect("headshot", _headshot)
+
+func _headshot():
+	add_point()

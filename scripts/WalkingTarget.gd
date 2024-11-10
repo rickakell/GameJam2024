@@ -26,3 +26,9 @@ func _physics_process(delta):
 		move_down(delta)
 	move(delta)
 	move_and_slide()
+
+
+func _on_collision_shape_head_input_event(viewport, event, shape_idx):
+	if event.is_action("shoot"):
+		SignalBus.emit_signal("headshot")
+		queue_free()

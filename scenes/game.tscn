@@ -191,11 +191,15 @@ distance = 187.0
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_8hl0c")
 
 [node name="ScoreLabel" type="Label" parent="GameManager"]
-offset_right = 40.0
-offset_bottom = 23.0
+z_index = 3
+offset_left = 60.0
+offset_top = 32.0
+offset_right = 100.0
+offset_bottom = 55.0
 
 [node name="EnemySpawnTimer" type="Timer" parent="GameManager"]
 autostart = true
