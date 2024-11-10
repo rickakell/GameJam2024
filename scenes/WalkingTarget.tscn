@@ -70,7 +70,7 @@ floor_max_angle = 1.23395
 script = ExtResource("1_mwsdd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = 1
+z_index = 2
 sprite_frames = SubResource("SpriteFrames_h333o")
 autoplay = "default"
 frame_progress = 0.757511
