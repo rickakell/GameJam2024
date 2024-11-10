@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfva30n8oputq"]
+[gd_scene load_steps=14 format=3 uid="uid://dfva30n8oputq"]
 
 [ext_resource type="Texture2D" uid="uid://didgmlc1ejfhs" path="res://assets/WalkSpriteSheet.png" id="1_3xpg7"]
 [ext_resource type="Script" path="res://scripts/WalkingTarget.gd" id="1_mwsdd"]
+[ext_resource type="Script" path="res://scripts/CollisionShapeHead.gd" id="3_4hmjg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2i5e"]
 atlas = ExtResource("1_3xpg7")
@@ -53,7 +54,14 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_tmuxj"]
+script/source = "extends AnimatedSprite2D
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_evfnx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8iqjj"]
+radius = 12.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 512
@@ -65,7 +73,8 @@ script = ExtResource("1_mwsdd")
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_h333o")
 autoplay = "default"
-frame_progress = 0.892964
+frame_progress = 0.757511
+script = SubResource("GDScript_tmuxj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 22)
@@ -76,3 +85,10 @@ target_position = Vector2(23, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-21, 0)
+
+[node name="CollisionShapeHead" type="Area2D" parent="."]
+position = Vector2(1, -21)
+script = ExtResource("3_4hmjg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShapeHead"]
+shape = SubResource("CircleShape2D_8iqjj")
