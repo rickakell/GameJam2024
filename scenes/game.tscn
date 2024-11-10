@@ -1,5 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dg7pngll8l1js"]
+[gd_scene load_steps=16 format=3 uid="uid://dg7pngll8l1js"]
 
+[ext_resource type="PackedScene" uid="uid://dmrlvsqtl743h" path="res://scenes/zooming_camera_2d.tscn" id="1_a22dm"]
+[ext_resource type="Script" path="res://scenes/GameManager.gd" id="1_dlok3"]
 [ext_resource type="Texture2D" uid="uid://bg4daaauj0q7w" path="res://assets/SkyTiles64.png" id="1_gsbhm"]
 [ext_resource type="Texture2D" uid="uid://bonlxr31um6c4" path="res://assets/SkyTiles32.png" id="1_owr7n"]
 [ext_resource type="Texture2D" uid="uid://b5bqjd8ifyrcm" path="res://assets/DirtTiles32.png" id="2_8vtwt"]
@@ -177,6 +179,15 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_qtf1o")
 
 [node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_dlok3")
+
+[node name="ScoreLabel" type="Label" parent="GameManager"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Camera2D" parent="." instance=ExtResource("1_a22dm")]
 
 [node name="Tiles" type="Node" parent="."]
 
