@@ -39,3 +39,7 @@ func _on_enemy_spawn_timer_3_timeout():
 	enemy.speed = randf_range(13000, 15000)
 	enemy.set_collision_mask_value(3, true)
 	%Tiles/TileMap3.add_child(enemy)
+
+func _input(event):
+	if event.is_action("shoot"):
+		$AudioStreamPlayer2D.play()
