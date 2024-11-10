@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dg7pngll8l1js"]
+[gd_scene load_steps=20 format=3 uid="uid://dg7pngll8l1js"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_8hl0c"]
 [ext_resource type="PackedScene" uid="uid://dmrlvsqtl743h" path="res://scenes/zooming_camera_2d.tscn" id="1_a22dm"]
@@ -179,6 +179,16 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_qtf1o")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5jwv1"]
+normal = Vector2(1, 0)
+distance = 213.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f6xuo"]
+normal = Vector2(-1, 0)
+distance = 187.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wo0l2"]
+
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
@@ -225,5 +235,25 @@ layer_0/tile_data = PackedInt32Array(2162688, 0, 0, 2162689, 0, 0, 2162690, 0, 0
 [node name="Enemy" parent="." instance=ExtResource("6_tmioa")]
 z_index = 1
 position = Vector2(774, 697)
+
+[node name="Boundaries" type="Node" parent="."]
+
+[node name="LeftBound" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftBound"]
+position = Vector2(-204, 576)
+shape = SubResource("WorldBoundaryShape2D_5jwv1")
+
+[node name="RightBound" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightBound"]
+position = Vector2(2099, 254)
+shape = SubResource("WorldBoundaryShape2D_f6xuo")
+
+[node name="LowerBound" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LowerBound"]
+position = Vector2(865, 1082)
+shape = SubResource("WorldBoundaryShape2D_wo0l2")
 
 [connection signal="timeout" from="GameManager/EnemySpawnTimer" to="GameManager" method="_on_enemy_spawn_timer_timeout"]
