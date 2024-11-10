@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dg7pngll8l1js"]
+[gd_scene load_steps=20 format=3 uid="uid://dg7pngll8l1js"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_8hl0c"]
 [ext_resource type="PackedScene" uid="uid://dmrlvsqtl743h" path="res://scenes/zooming_camera_2d.tscn" id="1_a22dm"]
@@ -194,8 +194,6 @@ distance = 187.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wo0l2"]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_al80r"]
-
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
@@ -268,12 +266,5 @@ shape = SubResource("WorldBoundaryShape2D_f6xuo")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LowerBound"]
 position = Vector2(865, 1082)
 shape = SubResource("WorldBoundaryShape2D_wo0l2")
-
-[node name="Spawn Areas" type="Node" parent="."]
-
-[node name="SpawnArea1" type="Area2D" parent="Spawn Areas"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn Areas/SpawnArea1"]
-shape = SubResource("ConvexPolygonShape2D_al80r")
 
 [connection signal="timeout" from="GameManager/EnemySpawnTimer" to="GameManager" method="_on_enemy_spawn_timer_timeout"]
