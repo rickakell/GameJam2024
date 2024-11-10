@@ -56,6 +56,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_evfnx"]
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 512
 floor_stop_on_slope = false
 floor_max_angle = 1.23395
 script = ExtResource("1_mwsdd")
@@ -64,8 +65,14 @@ script = ExtResource("1_mwsdd")
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_h333o")
 autoplay = "default"
-frame_progress = 0.138656
+frame_progress = 0.892964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 22)
 shape = SubResource("CircleShape2D_evfnx")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(23, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-21, 0)
