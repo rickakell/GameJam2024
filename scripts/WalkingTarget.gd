@@ -1,8 +1,15 @@
 extends CharacterBody2D
 
-var speed = 10000
+var speed = 10000 : set = speed_set_state
 
-var direction = 1
+func speed_set_state(value):
+	speed = value
+
+var direction = 1 : set = direction_set_state
+
+func direction_set_state(value):
+	direction = value
+	set_flip_state(direction)
 
 func move_down(delta):
 	velocity.y = speed * delta
@@ -18,10 +25,10 @@ func move(delta):
 func _physics_process(delta):
 	if ray_cast_right.is_colliding():
 		direction = -1
-		animated_sprite.flip_h = true
+		set_flip_state(direction)
 	if ray_cast_left.is_colliding():
 		direction = 1
-		animated_sprite.flip_h = false
+		set_flip_state(direction)
 	if !is_on_floor():
 		move_down(delta)
 	move(delta)
@@ -32,3 +39,9 @@ func _on_collision_shape_head_input_event(viewport, event, shape_idx):
 	if event.is_action("shoot"):
 		SignalBus.emit_signal("headshot")
 		queue_free()
+
+func set_flip_state(current_direction):
+	if current_direction == 1:
+		false
+	if current_direction == -1:
+		true

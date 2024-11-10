@@ -1,10 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://dg7pngll8l1js"]
+[gd_scene load_steps=21 format=3 uid="uid://dg7pngll8l1js"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_8hl0c"]
 [ext_resource type="PackedScene" uid="uid://dmrlvsqtl743h" path="res://scenes/zooming_camera_2d.tscn" id="1_a22dm"]
 [ext_resource type="Texture2D" uid="uid://bg4daaauj0q7w" path="res://assets/SkyTiles64.png" id="1_gsbhm"]
 [ext_resource type="Texture2D" uid="uid://bonlxr31um6c4" path="res://assets/SkyTiles32.png" id="1_owr7n"]
 [ext_resource type="Texture2D" uid="uid://b5bqjd8ifyrcm" path="res://assets/DirtTiles32.png" id="2_8vtwt"]
+
+[sub_resource type="Curve2D" id="Curve2D_87fh0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 138, 843, 0, 0, 0, 0, 246, 843, 0, 0, 0, 0, 367, 915, 0, 0, 0, 0, 504, 922, 0, 0, 0, 0, 640, 918, 0, 0, 0, 0, 763, 918, 0, 0, 0, 0, 872, 954, 0, 0, 0, 0, 1024, 910, 0, 0, 0, 0, 1129, 909, 0, 0, 0, 0, 1269, 910, 0, 0, 0, 0, 1382, 910, 0, 0, 0, 0, 1509, 910, 0, 0, 0, 0, 1684, 819, 0, 0, 0, 0, 1816, 804, 0, 0, 0, 0, 138, 843, 0, 0, 0, 0, 1810, 836)
+}
+point_count = 16
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28wyc"]
 texture = ExtResource("1_gsbhm")
@@ -188,6 +194,8 @@ distance = 187.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wo0l2"]
 
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_al80r"]
+
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
@@ -203,6 +211,12 @@ offset_bottom = 55.0
 
 [node name="EnemySpawnTimer" type="Timer" parent="GameManager"]
 autostart = true
+
+[node name="EnemyPath" type="Path2D" parent="GameManager"]
+curve = SubResource("Curve2D_87fh0")
+
+[node name="SpawnPath" type="PathFollow2D" parent="GameManager/EnemyPath"]
+position = Vector2(138, 843)
 
 [node name="Camera2D" parent="." instance=ExtResource("1_a22dm")]
 
@@ -254,5 +268,12 @@ shape = SubResource("WorldBoundaryShape2D_f6xuo")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LowerBound"]
 position = Vector2(865, 1082)
 shape = SubResource("WorldBoundaryShape2D_wo0l2")
+
+[node name="Spawn Areas" type="Node" parent="."]
+
+[node name="SpawnArea1" type="Area2D" parent="Spawn Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn Areas/SpawnArea1"]
+shape = SubResource("ConvexPolygonShape2D_al80r")
 
 [connection signal="timeout" from="GameManager/EnemySpawnTimer" to="GameManager" method="_on_enemy_spawn_timer_timeout"]
