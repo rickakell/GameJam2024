@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmrlvsqtl743h"]
+
+[ext_resource type="Script" path="res://scripts/ZoomingCamera2D.gd" id="1_fto5w"]
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2(961, 538)
+script = ExtResource("1_fto5w")
