@@ -34,16 +34,13 @@ func _physics_process(delta):
 	move(delta)
 	move_and_slide()
 
-
-func _on_collision_shape_head_input_event(viewport, event, shape_idx):
+func _on_collision_shape_head_input_event(_viewport, event, _shape_idx):
 	if event.is_action("shoot"):
 		SignalBus.emit_signal("headshot")
 		queue_free()
 
 func set_flip_state(current_direction):
-	print("called")
 	if current_direction == 1:
 		animated_sprite.flip_h = false
 	if current_direction == -1:
-		print("flipped")
 		animated_sprite.flip_h = true
