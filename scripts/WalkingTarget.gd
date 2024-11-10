@@ -41,7 +41,9 @@ func _on_collision_shape_head_input_event(viewport, event, shape_idx):
 		queue_free()
 
 func set_flip_state(current_direction):
+	print("called")
 	if current_direction == 1:
-		false
+		animated_sprite.flip_h = false
 	if current_direction == -1:
-		true
+		print("flipped")
+		animated_sprite.flip_h = true
