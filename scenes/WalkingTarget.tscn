@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfva30n8oputq"]
+[gd_scene load_steps=11 format=3 uid="uid://dfva30n8oputq"]
 
 [ext_resource type="Texture2D" uid="uid://didgmlc1ejfhs" path="res://assets/WalkSpriteSheet.png" id="1_3xpg7"]
+[ext_resource type="Script" path="res://scripts/WalkingTarget.gd" id="1_mwsdd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2i5e"]
 atlas = ExtResource("1_3xpg7")
@@ -52,8 +53,17 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Enemy" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_evfnx"]
+
+[node name="Enemy" type="RigidBody2D"]
+script = ExtResource("1_mwsdd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_h333o")
-frame_progress = 0.0805502
+autoplay = "default"
+frame_progress = 0.414101
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 22)
+shape = SubResource("CircleShape2D_evfnx")
