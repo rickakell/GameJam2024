@@ -58,7 +58,11 @@ func _process(delta):
 
 var game_start = true;
 var toggled = true;
+var game_in_restart_state = false;
 func _on_button_pressed():
+	if game_in_restart_state:
+		game_in_restart_state = false;
+		get_tree().reload_current_scene()
 	if game_start:
 		game_start = false;
 		GameTimer.start()
@@ -73,5 +77,10 @@ func _on_button_pressed():
 		get_tree().paused = true
 		$StartButton.text = "Resume"
 
+@onready var StartButton = $StartButton
 func _on_game_timer_timeout():
-	pass # Replace with function body.
+	print("Time's Up.")
+	game_in_restart_state = true
+	get_tree().paused = true
+	var restart_button = Button.new()
+	StartButton.text = "Reset"
