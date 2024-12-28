@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bg4daaauj0q7w" path="res://assets/SkyTiles64.png" id="1_gsbhm"]
 [ext_resource type="Texture2D" uid="uid://bonlxr31um6c4" path="res://assets/SkyTiles32.png" id="1_owr7n"]
 [ext_resource type="Texture2D" uid="uid://b5bqjd8ifyrcm" path="res://assets/DirtTiles32.png" id="2_8vtwt"]
-[ext_resource type="AudioStream" uid="uid://cjhafuswr46iq" path="res://assets/Shoot.wav" id="5_r2hps"]
+[ext_resource type="AudioStream" uid="uid://dr3jovipvlncw" path="res://assets/Shoot.mp3" id="5_qorn6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28wyc"]
 texture = ExtResource("1_gsbhm")
@@ -289,8 +289,8 @@ scale = Vector2(1, 2.4)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameManager"]
 position = Vector2(965, 525)
-stream = ExtResource("5_r2hps")
-volume_db = 0.675
+stream = ExtResource("5_qorn6")
+volume_db = 5.152
 pitch_scale = 1.52
 attenuation = 0.0245183
 
