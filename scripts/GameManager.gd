@@ -2,12 +2,13 @@ extends Node
 
 func _ready():
 	SignalBus.connect("headshot", _headshot)
+	get_tree().paused = true
 
 func _headshot():
 	add_point()
 
 var score = 0
-@onready var score_label = $ScoreLabel
+@onready var score_label = $Labels/ScoreLabel
 func add_point():
 	score += 1
 	score_label.text = "Score: " + str(score)
@@ -43,3 +44,34 @@ func _on_enemy_spawn_timer_3_timeout():
 func _input(event):
 	if event.is_action("shoot"):
 		$AudioStreamPlayer2D.play()
+
+@onready var GameTimer = $GameTimer
+func time_remaining():
+	var time_left = GameTimer.time_left
+	var minute = floor(time_left / 60)
+	var second = int(time_left) % 60
+	return [minute, second]
+
+@onready var TimerLabel = $Labels/TimeRemaining
+func _process(delta):
+	TimerLabel.text = "%02d:%02d" % time_remaining()
+
+var game_start = true;
+var toggled = true;
+func _on_button_pressed():
+	if game_start:
+		game_start = false;
+		GameTimer.start()
+	if toggled:
+		toggled = false
+		GameTimer.paused = false
+		get_tree().paused = false
+		$StartButton.text = "Pause"
+	else:
+		toggled = true
+		GameTimer.paused = false
+		get_tree().paused = true
+		$StartButton.text = "Resume"
+
+func _on_game_timer_timeout():
+	pass # Replace with function body.
