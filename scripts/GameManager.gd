@@ -41,8 +41,11 @@ func _on_enemy_spawn_timer_3_timeout():
 	enemy.set_collision_mask_value(3, true)
 	%Tiles/TileMap3.add_child(enemy)
 
+var can_shoot = true
 func _input(event):
-	if event.is_action("shoot"):
+	if event.is_action("shoot") and can_shoot:
+		can_shoot = false
+		get_tree().create_timer(.25).timeout.connect(func(): can_shoot = true)
 		$AudioStreamPlayer2D.play()
 
 @onready var GameTimer = $GameTimer
